@@ -1,0 +1,11 @@
+com\doubao\proxy\jdk\Aodi.class
+com\doubao\proxy\jdk\JdkProxyTest.class
+com\doubao\proxy\staticed\Person.class
+com\doubao\proxy\staticed\Son.class
+com\doubao\proxy\jdk\BenChi.class
+com\doubao\proxy\staticed\StaticTest.class
+com\doubao\proxy\cglib\CglibProxyTest.class
+com\doubao\proxy\jdk\JdkProxy.class
+com\doubao\proxy\cglib\CglibProxy.class
+com\doubao\proxy\jdk\Car.class
+com\doubao\proxy\staticed\Father.class

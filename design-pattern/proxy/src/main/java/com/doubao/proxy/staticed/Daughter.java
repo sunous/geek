@@ -1,10 +1,10 @@
 package com.doubao.proxy.staticed;
 
-public class  Son implements Person {
+public class Daughter implements Person {
 
 
     @Override
     public void findLove() {
-        System.out.println("儿子提出要求");
+        System.out.println("女儿提要求");
     }
 }
