@@ -3,7 +3,7 @@ package com.doubao.singleton.hungry;
 /**
  * Created by Administrator on 2019/4/26.
  */
-//恶汉式  在类初始化的时候就被创建了实力
+//恶汉式  在类初始化的时候就被创建了实例
 public class HungrySingleton {
 
     private HungrySingleton(){}

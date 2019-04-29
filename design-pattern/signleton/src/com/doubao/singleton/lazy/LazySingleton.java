@@ -14,6 +14,7 @@ public class LazySingleton {
         if (lazy == null) {
             lazy =new LazySingleton();
         }
+        System.out.println(lazy);
         return lazy;
     }
 }
