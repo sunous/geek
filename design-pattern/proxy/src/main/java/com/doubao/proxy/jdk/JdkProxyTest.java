@@ -19,9 +19,9 @@ public class JdkProxyTest {
 //        System.out.println(instance);
 //        method.invoke(instance);
 
-        Object obj = new JdkProxy().getInstance(new Daughter());
-        System.out.println(obj);
-        Method method = obj.getClass().getMethod("findLove",null);
+        Object obj = new JdkProxy().getInstance(new BenChi());
+        System.out.println(obj.getClass());
+        Method method = obj.getClass().getMethod("getName",null);
         method.invoke(obj);
 
         //obj.findLove();
@@ -41,8 +41,8 @@ public class JdkProxyTest {
         //5、重新加载到JVM中
         //以上就是字节码重组的过程
 
-        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{Son.class});
-        FileOutputStream fs = new FileOutputStream("F://$Proxy1.class");
+        byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{Car.class});
+        FileOutputStream fs = new FileOutputStream("D://$Proxy0.class");
         fs.write(bytes);
         fs.close();
 
