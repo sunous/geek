@@ -20,13 +20,13 @@ import java.util.*;
 
 public class WlwServlet extends HttpServlet{
 
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
 
-    List<String> classNames = new ArrayList<>();
+    private List<String> classNames = new ArrayList<>();
 
-    Map<String,Object> IOC = new HashMap<>();
+    private Map<String,Object> IOC = new HashMap<>();
 
-    Map<String,Method> haddlerMapping = new HashMap<>();
+    private Map<String,Method> haddlerMapping = new HashMap<>();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -131,7 +131,7 @@ public class WlwServlet extends HttpServlet{
                 //插入interface
                 Class<?>[] interfaces = clazz.getInterfaces();
                 for (Class<?> i:interfaces) {
-                    IOC.put(i.getName(),i.newInstance());
+                    IOC.put(i.getName(),instance);
                 }
             }
         }
@@ -167,11 +167,36 @@ public class WlwServlet extends HttpServlet{
     }
 
 
-    private void doDispatch(HttpServletRequest req, HttpServletResponse resp){
+    private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String requestURI = req.getRequestURI();
         Method method = haddlerMapping.get(requestURI);
+        if (method == null){
+            resp.getWriter().write("404 not found");
+            return;
+        }
+        //获取实参列表
+        Map<String, String[]> parameterMap = req.getParameterMap();
+        //获取形参列表
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        for(int i = 0;i<parameterTypes.length;i++){
+            //按顺序获取形参列表
+            Class<?> clazz = parameterTypes[i];
+            if (clazz == HttpServletRequest.class){
+//                parameterMap.get(i)=
+            }
+        }
 
-//       method.invoke()
+        String  beanName = lowerFirstCase(method.getDeclaringClass().getSimpleName());
+        try {
+            String[] names = parameterMap.get("name");
+            StringBuffer sb = new StringBuffer();
+            for (String s:names){
+                sb.append(",").append(s);
+            }
+            method.invoke(IOC.get(beanName),new Object[]{req,resp,sb.toString().replaceFirst(",","")});
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
 
