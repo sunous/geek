@@ -191,7 +191,11 @@ private static String generateSrc(Class<?>[] interfaces){
 
     private static String toLowerFirstCase(String src){
         char [] chars = src.toCharArray();
-        chars[0] += 32;
+
+        if (chars[0]<97){
+            chars[0] += 32;
+        }
+
         return String.valueOf(chars);
     }
 
