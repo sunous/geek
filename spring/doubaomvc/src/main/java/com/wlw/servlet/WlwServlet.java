@@ -58,7 +58,7 @@ public class WlwServlet extends HttpServlet{
         if(IOC.isEmpty()) return;
         for(Map.Entry<String,Object> entry:IOC.entrySet()){
             Class<?> clazz = entry.getValue().getClass();
-            if (!clazz.isAnnotationPresent(WlwController.class))return;
+            if (!clazz.isAnnotationPresent(WlwController.class))continue;
             if (clazz.isAnnotationPresent(WlwRequestMapping.class)){
                 WlwRequestMapping wlwRequestMapping = clazz.getAnnotation(WlwRequestMapping.class);
                 String url = wlwRequestMapping.value();//Controller的RequestMapping前缀
@@ -95,7 +95,14 @@ public class WlwServlet extends HttpServlet{
                             beanName = value;
                         }
                         field.setAccessible(true);
-                        IOC.put(beanName,IOC.get(beanName));
+//                        IOC.put(beanName,IOC.get(beanName));
+                        try {
+                            //将class中的属性从IOC容器中获取到并赋值
+                            field.set(entry.getValue(), IOC.get(beanName));
+                        }catch (Exception e){
+
+                        }
+
 
                     }
                 }
