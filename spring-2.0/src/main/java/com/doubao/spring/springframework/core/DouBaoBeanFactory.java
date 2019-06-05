@@ -7,5 +7,5 @@ public interface DouBaoBeanFactory {
      * @param className
      * @return
      */
-   Object getBean(String className);
+   Object getBean(Class<?> className);
 }

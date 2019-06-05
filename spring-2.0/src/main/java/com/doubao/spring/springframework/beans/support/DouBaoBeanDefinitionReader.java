@@ -51,7 +51,7 @@ public class DouBaoBeanDefinitionReader {
     }
 
 
-    private List<DouBaoBeanDefinition> loadBeanDefinitions(){
+    public List<DouBaoBeanDefinition> loadBeanDefinitions(){
         List<DouBaoBeanDefinition> beanDefinitions = new ArrayList<>();
         for(String className : registryBeanClasses ){
             if(className.getClass().isInterface())continue;//如果是接口，暂不处理
