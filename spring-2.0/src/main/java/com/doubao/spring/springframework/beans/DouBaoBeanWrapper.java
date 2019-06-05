@@ -1,10 +1,19 @@
 package com.doubao.spring.springframework.beans;
 
-import com.doubao.spring.springframework.beans.config.DouBaoBeanDefinition;
 
 public class DouBaoBeanWrapper {
+    private Object wrappedInstance;
+    private Class<?> wrappedClass;
 
-    public DouBaoBeanWrapper(DouBaoBeanDefinition douBaoBeanDefinition){
+    public DouBaoBeanWrapper(Object wrappedInstance){
+        this.wrappedInstance = wrappedInstance;
+    }
 
+    public Object getWrappedInstance() {
+        return this.wrappedInstance;
+    }
+
+    public Class<?> getWrappedClass() {
+        return this.wrappedInstance.getClass();
     }
 }

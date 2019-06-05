@@ -52,15 +52,24 @@ public class DouBaoApplicationContext extends DouBaoDefaultListableBeanFactory i
         //bean初始化之前的操作
         postProcessor.postProcessBeforeInitialization(instance,beanName);
 
+        //装饰器模式装饰
+        DouBaoBeanWrapper DouBaoBeanWrapper  = new DouBaoBeanWrapper(instance);
         //bean初始化
         instance = instantiateBean(beanName,beanDefinition);
 
+
+        this.factoryBeanInstanceCache.put(beanName,DouBaoBeanWrapper);
 
         //bean初始化之后的操作
         postProcessor.postProcessAfterInitialization(instance,beanName);
 
 
-        DouBaoBeanWrapper DouBaoBeanWrapper  = new DouBaoBeanWrapper(beanDefinition);
+
+
+
+
+
+
 
         return null;
     }
